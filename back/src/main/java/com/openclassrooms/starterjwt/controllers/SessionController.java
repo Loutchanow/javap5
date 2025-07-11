@@ -49,15 +49,15 @@ public class SessionController {
         return ResponseEntity.ok().body(this.sessionMapper.toDto(sessions));
     }
 
-    @PostMapping()
-    public ResponseEntity<?> create(@Valid @RequestBody SessionDto sessionDto) {
-        log.info(sessionDto);
+@PostMapping()
+public ResponseEntity<?> create(@Valid @RequestBody SessionDto sessionDto) {
+    log.info("Reçu sessionDto: {}", sessionDto);
+    
+    Session session = this.sessionService.create(this.sessionMapper.toEntity(sessionDto));
 
-        Session session = this.sessionService.create(this.sessionMapper.toEntity(sessionDto));
-
-        log.info(session);
-        return ResponseEntity.ok().body(this.sessionMapper.toDto(session));
-    }
+    log.info("Session créée: {}", session);
+    return ResponseEntity.ok().body(this.sessionMapper.toDto(session));
+}
 
     @PutMapping("{id}")
     public ResponseEntity<?> update(@PathVariable("id") String id, @Valid @RequestBody SessionDto sessionDto) {
