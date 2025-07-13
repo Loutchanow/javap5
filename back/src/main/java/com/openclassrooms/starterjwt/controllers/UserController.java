@@ -30,7 +30,7 @@ public class UserController {
         try {
             User user = this.userService.findById(Long.valueOf(id));
 
-            if (user == null) {
+            if (user == null) { 
                 return ResponseEntity.notFound().build();
             }
 
