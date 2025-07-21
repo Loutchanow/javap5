@@ -28,18 +28,18 @@ describe('TeacherService', () => {
   });
 
   it('should call GET api/teacher in all()', () => {
-    const dummyTeachers = [
+    const Teachers = [
       { id: 1, name: 'John Doe' },
       { id: 2, name: 'Jane Doe' },
     ];
 
     service.all().subscribe((teachers) => {
       expect(teachers.length).toBe(2);
-      expect(teachers).toEqual(dummyTeachers);
+      expect(teachers).toEqual(Teachers);
     });
 
     const req = httpMock.expectOne('api/teacher');
     expect(req.request.method).toBe('GET');
-    req.flush(dummyTeachers);
+    req.flush(Teachers);
   });
 });
